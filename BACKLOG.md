@@ -135,6 +135,48 @@ jumps in one `AddExperience()` call, and `RaceFlow` win/loss rewards
 matching the locked design exactly (including confirming loss never
 reduces trophies).
 
+## Phase 1, Week 3.5 — Human-playable debug loop (bridge to playtest)
+
+Added after the user confirmed the Console-log evidence was working but
+wanted an actual clickable loop before doing UI/UX judgment or the
+human playtest — not part of the original Week 1-3 scope, but blocks
+both.
+
+- [x] `BiomeLibrary.Forest()` — first real (if hardcoded) multi-segment
+      biome, so BiomeSelect has something concrete to race instead of
+      only test-harness-only inline biomes.
+      `Assets/Scripts/Race/BiomeLibrary.cs`.
+- [x] `GameFlow.GenerateOpponent()` — same-level, opposite-species
+      placeholder opponent so races aren't mirror matches. Real
+      opponent selection/difficulty scaling is a later concern.
+- [x] **Bugfix:** `GameFlow.RunRace()` was calling `RaceSimulator`
+      directly, bypassing `RaceFlow` entirely — meaning XP/trophy
+      rewards from Week 3 never actually applied through normal play,
+      only in the isolated test harness. Now routes through
+      `RaceFlow`, and calls `SaveGame()` after every race so results
+      persist.
+- [x] `DebugFlowUI` + `DebugUISceneSetup` editor tool — bare Canvas UI
+      (no art/layout polish, explicitly not meant to survive into real
+      UI/UX work) wired into `Main.unity`: MainMenu → CritterSelect
+      (dynamic buttons per owned critter, shows live stats) →
+      BiomeSelect (Race: Forest button) → RaceResult (win/loss, XP,
+      trophies, level-up). `Assets/Scripts/UI/DebugFlowUI.cs` +
+      `Assets/Scripts/Editor/DebugUISceneSetup.cs`.
+- [x] **Real bug caught and fixed:** `com.unity.ugui` (legacy UI
+      package providing `Button`/`Text`) was missing from
+      `Packages/manifest.json` — this Unity 6 project template only
+      included the newer UI Toolkit modules by default. Added
+      `"com.unity.ugui": "2.0.0"` to the manifest; this was a genuine
+      compile-blocking gap, not a design choice.
+- [x] Regression-verified 2026-07-29: Week 1/2/3 test harnesses all
+      still pass after the UGUI package addition (run sequentially —
+      running two Unity batch-mode instances against the same project
+      in parallel causes a project-lock conflict and an immediate
+      exit-code-1 failure; worth remembering for future headless runs).
+- [ ] **Still needs a human:** open `Main.unity` in the Editor, press
+      Play, click through MainMenu → pick a critter → Race: Forest →
+      confirm the result screen shows sensible win/loss + rewards.
+
 ---
 
 *(Phase 2+ items are intentionally not itemized here yet — see the
