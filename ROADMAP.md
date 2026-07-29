@@ -65,6 +65,25 @@ trophies/progress, only slows it.
   obstacles/rubber-banding). Texture (mid-race events, randomness
   beyond the seed, catch-up mechanics) is deliberately deferred until
   after the core loop is proven fun in this simplest form.
+- **2026-07-29 — GitHub workflow setup:** Public repo created
+  (github.com/nobody174/Critter-Rally), Unity `.gitignore` committed
+  first before any real code (Library/, Temp/, Obj/, Build/, .vs/,
+  *.csproj, *.sln, UserSettings/, etc. — see repo's `.gitignore`).
+  **Git LFS deliberately skipped for now** — GitHub's free LFS tier is
+  only 1GB storage/bandwidth per month and this is a no-budget solo
+  project, so binary assets (art/audio, once Phase 2 starts) will be
+  committed as regular git files instead. Audio is low-priority/minimal
+  for this game already, which helps keep repo size down. Revisit LFS
+  (or alternatives: itch.io asset hosting, Google Drive for source
+  files, or just watching `git count-objects -vH`) only if repo size
+  actually becomes a problem — don't set it up preemptively.
+  **CI (GitHub Actions/GameCI headless Test Runner) deliberately
+  deferred until after Phase 1 Week 1** — needs a real local Unity
+  install to generate a license-activation file first, and there's no
+  code to test yet. No build/release automation planned at all for
+  now; releases stay fully manual (build in-editor, tag `vX.Y.Z`,
+  upload to a GitHub Release or itch.io by hand) until the project is
+  further along.
 
 ## Planned — Phase 1 (Weeks 1–3): Prove the core loop
 
