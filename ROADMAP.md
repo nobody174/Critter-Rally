@@ -21,15 +21,28 @@ every future UI/UX pass should be checked against this reference.
 - Balance – tightrope/branch running
 
 **Gadgets ("Nature Tools")** — equip up to 2 before a race, flat stat
-bonuses (some with tradeoffs), each favors a terrain type
-- Rocket Acorns – Ground: +Sprint, +Jump
-- Leaf Gliders – Ground: +Jump, -Sprint (glide-focused, slow on the
-  ground)
-- Mud Skis – Water: +Swim, -Jump
-- Berry Shields – temporary protection (effect TBD — needs a Technical
-  Designer pass before Week 3)
-- Vine Whips – swing across obstacles (effect TBD — needs a Technical
-  Designer pass before Week 3)
+bonuses (some with tradeoffs), each favors a terrain type. Locked
+2026-07-29 (Berry Shields/Vine Whips finalized, first pass):
+- Rocket Acorns – Ground: +15 Sprint, +5 Jump
+- Leaf Gliders – Ground: +20 Jump, -5 Sprint (glide-focused, slow on
+  the ground)
+- Mud Skis – Water: +18 Swim, -10 Jump (can't jump in mud)
+- Berry Shields – Tightrope: +15 Balance, -5 Sprint (bulkier/more
+  stable, slower — "protection" reads as surefootedness, not damage
+  mitigation, since there's no combat/knockout system)
+- Vine Whips – Burrow: +15 Dig, -5 Balance (aggressive tunneling
+  trades off poise). Ground ends up with 2 gadgets (Rocket
+  Acorns/Leaf Gliders) and Burrow gets its first, keeping all 4
+  terrain types covered across the 5 launch gadgets.
+
+**XP & trophy rewards** — locked 2026-07-29, per Rule 0 (no negative
+trophies on loss, ever):
+- Win: +100 XP, +5 trophies
+- Loss: +40 XP, +0 trophies (always some forward progress, never a
+  setback)
+- Level-up threshold: `XPToNextLevel = 100 + (level-1) * 50` (linear,
+  matches the "linear for v1.0" stat-growth decision — predictable and
+  easy to hand-tune)
 
 **Progression**
 - Unlock new critters (fox, frog, mole, squirrel, hedgehog, more later)

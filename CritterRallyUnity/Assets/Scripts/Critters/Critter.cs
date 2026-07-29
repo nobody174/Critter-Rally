@@ -12,6 +12,8 @@ namespace CritterRally.Critters
     [Serializable]
     public class Critter
     {
+        public const int MaxEquippedGadgets = 2;
+
         public int id;
         public string speciesId; // matches CritterSpecies.speciesName, used for save lookup
         public int level = 1;
@@ -25,6 +27,43 @@ namespace CritterRally.Critters
         public int Dig { get; private set; }
         public int Swim { get; private set; }
         public int Balance { get; private set; }
+
+        /// <summary>XP needed to reach the next level from the current one. Linear per ROADMAP.md (locked 2026-07-29).</summary>
+        public int ExperienceToNextLevel => 100 + (level - 1) * 50;
+
+        /// <returns>True if equipped (false if already at MaxEquippedGadgets).</returns>
+        public bool EquipGadget(Equipment.Equipment gadget)
+        {
+            if (equippedGadgets.Count >= MaxEquippedGadgets)
+                return false;
+
+            equippedGadgets.Add(gadget);
+            CalculateStats();
+            return true;
+        }
+
+        public void UnequipGadget(Equipment.Equipment gadget)
+        {
+            equippedGadgets.Remove(gadget);
+            CalculateStats();
+        }
+
+        /// <summary>
+        /// Adds XP and applies any level-ups the amount crosses (handles
+        /// multi-level jumps in one call), recalculating stats afterward.
+        /// </summary>
+        public void AddExperience(int amount)
+        {
+            experience += amount;
+
+            while (experience >= ExperienceToNextLevel)
+            {
+                experience -= ExperienceToNextLevel;
+                level++;
+            }
+
+            CalculateStats();
+        }
 
         public void CalculateStats()
         {

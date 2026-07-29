@@ -92,24 +92,48 @@ process decisions behind these choices.
 
 ## Phase 1, Week 3 — Equipment System & Progression
 
-- [ ] **Design pass:** finalize effects for Berry Shields and Vine
+- [x] **Design pass:** finalize effects for Berry Shields and Vine
       Whips (currently placeholder/TBD in ROADMAP.md) and confirm the
       full 5-gadget balance sheet (each gadget's primary terrain +
-      stat tradeoffs) before implementation.
-- [ ] `Equipment` class + `EquipmentLibrary` (Rocket Acorns, Leaf
+      stat tradeoffs) before implementation. Locked 2026-07-29: Berry
+      Shields (Tightrope: +15 Balance, -5 Sprint), Vine Whips (Burrow:
+      +15 Dig, -5 Balance) — full table in ROADMAP.md. All 4 terrain
+      types now have gadget coverage across the 5 launch gadgets.
+- [x] `Equipment` class + `EquipmentLibrary` (Rocket Acorns, Leaf
       Gliders, Mud Skis confirmed from draft; Berry Shields/Vine Whips
-      pending design pass above)
-- [ ] Equipment-select UI: choose up to 2 gadgets before a race
-- [ ] XP/level-up wiring: race result → `Critter.Experience` →
-      level-up check → stat recalculation
-- [ ] **Design pass:** XP curve and trophy reward values — confirm win
+      pending design pass above) —
+      `Assets/Scripts/Equipment/Equipment.cs` +
+      `EquipmentLibrary.cs` (factory for all 5).
+- [ ] **Equipment-select UI: choose up to 2 gadgets before a race —
+      still open.** `Critter.EquipGadget()`/`UnequipGadget()` enforce
+      the 2-gadget max and recalculate stats correctly (verified), but
+      no Canvas screen exists yet for a player to actually pick
+      gadgets — that's a UI/UX Programmer hat task, deferred since it
+      needs real screen-layout decisions, not just logic.
+- [x] XP/level-up wiring: race result → `Critter.Experience` →
+      level-up check → stat recalculation — `Critter.AddExperience()`
+      (handles multi-level jumps in one call) +
+      `Assets/Scripts/Race/RaceFlow.cs` (applies race result to XP/
+      trophies).
+- [x] **Design pass:** XP curve and trophy reward values — confirm win
       XP/trophies and loss XP/trophies match the cozy no-negative-loss
-      rule (CLAUDE.md Rule 0) before wiring rewards into `RaceFlow`
-- [ ] Playtest checklist:
+      rule (CLAUDE.md Rule 0) before wiring rewards into `RaceFlow`.
+      Locked 2026-07-29: win +100 XP/+5 trophies, loss +40 XP/+0
+      trophies (never negative), level threshold
+      `100 + (level-1)*50` — full detail in ROADMAP.md.
+- [ ] Playtest checklist — **needs a human in the Unity Editor,
+      not just automated tests; still open:**
   - [ ] Can you tell which gadgets make you faster on which terrain?
   - [ ] Does winning and earning XP feel rewarding?
   - [ ] Does losing feel fair rather than punishing (no trophy loss)?
   - [ ] Does the full loop feel repetitive yet, or still fresh?
+
+**Verified 2026-07-29 via `ProgressionTestHarness.cs`, headless and
+log-confirmed:** equip-limit enforcement (2 max, 3rd rejected),
+immediate stat recalculation on equip, single- and multi-level XP
+jumps in one `AddExperience()` call, and `RaceFlow` win/loss rewards
+matching the locked design exactly (including confirming loss never
+reduces trophies).
 
 ---
 

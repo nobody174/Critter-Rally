@@ -55,5 +55,27 @@ a dated entry below.
   `Initialize()` reaches `MainMenu` with linked starter critters, and
   `SelectCritter()` correctly advances to `BiomeSelect`.
 
-*(No tagged releases yet — v0.1.0 is planned once the full Phase 1
-loop, Weeks 1-3, is playable end-to-end.)*
+- Locked full 5-gadget balance sheet (Rocket Acorns, Leaf Gliders, Mud
+  Skis, Berry Shields, Vine Whips) covering all 4 terrain types, and
+  the win/loss XP + trophy reward curve — see ROADMAP.md.
+- Phase 1 Week 3 (Equipment System & Progression) mostly complete:
+  `Equipment` + `EquipmentLibrary` (all 5 gadgets),
+  `Critter.EquipGadget()`/`UnequipGadget()` (enforces 2-gadget max,
+  recalculates stats immediately), `Critter.AddExperience()` (handles
+  multi-level jumps in one call), `Race/RaceFlow.cs` (applies race
+  result to XP/trophies per the locked cozy no-negative-trophy rule).
+  **Not yet done:** the actual gadget-select Canvas UI (equip logic
+  exists, no screen to drive it yet) and a human playtest pass in the
+  Editor — both intentionally left open in BACKLOG.md rather than
+  claimed as finished.
+- Verified in-editor (not just compiled), 2026-07-29:
+  `ProgressionTestHarness` confirms equip-limit enforcement, immediate
+  stat recalculation on equip/unequip, single- and multi-level XP
+  jumps, and `RaceFlow` win/loss rewards matching the locked design —
+  including that a loss never reduces trophies.
+
+*(No tagged releases yet. v0.1.0 is intentionally NOT tagged despite
+Weeks 1-3's core logic being implemented and automated-test-verified —
+the equipment-select UI and a human playtest pass are still open per
+BACKLOG.md, and "playable end-to-end" means a person can actually click
+through it, not just that the underlying systems pass headless tests.)*
