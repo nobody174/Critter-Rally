@@ -99,6 +99,20 @@ a dated entry below.
   batch-mode instances against one project conflict on the project
   lock and fail immediately).
 
+### Changed — 2026-07-29 (render pipeline)
+- Switched from the deprecated Built-in Render Pipeline to URP
+  (Universal Render Pipeline, `com.unity.render-pipelines.universal`),
+  done now specifically because Phase 1 has zero rendering yet (no
+  models/materials) — the cheapest possible point to convert, before
+  any Phase 2 art work exists that would need re-conversion. New URP
+  asset + renderer at `Assets/Settings/`, assigned as the default
+  pipeline and across all 6 quality levels via `URPSetup.cs`
+  (`CritterRally > Setup URP (one-time)`).
+- Regression-verified: all Week 1/2/3 test harnesses still pass after
+  the pipeline switch (logic-only tests, unaffected by rendering, but
+  confirmed anyway since the package/settings churn touched
+  `ProjectSettings`).
+
 *(No tagged releases yet. v0.1.0 is intentionally NOT tagged — the
 gadget-select UI and a human playtest pass in the Editor are still
 open per BACKLOG.md, and "playable end-to-end" means a person can
