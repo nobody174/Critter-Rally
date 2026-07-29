@@ -18,4 +18,29 @@ a dated entry below.
 
 ---
 
-*(No releases yet.)*
+## [Unreleased]
+
+### Added — 2026-07-29
+- Unity 6 (6000.5.5f1) project created at `CritterRallyUnity/`, modular
+  folder structure (`Scripts/Critters`, `Scripts/Race`,
+  `Scripts/Equipment`, `Scripts/Save`, `Scripts/UI`,
+  `Scripts/Editor`, `ScriptableObjects/`).
+- Phase 1 Week 1 (Race Simulation Engine) complete: `Critter`,
+  `CritterSpecies` (ScriptableObject), `TerrainType`, `BiomeTerrain`,
+  `Biome`, `RaceSimulator`. Deterministic, seeded, stat-vs-terrain math
+  race — no physics/obstacles by design (see ROADMAP.md sim-fidelity
+  decision).
+- `RaceSimulatorTestHarness` editor tool
+  (`CritterRally > Run Race Simulator Tests`), confirmed working
+  headless via Unity batch mode:
+  - Determinism check: PASS.
+  - Ground terrain: Fox (Sprint-specialist) beat Frog, 500.3 vs 224.0
+    progress.
+  - Water terrain: Frog (Swim-specialist) beat Fox, 500.5 vs 179.3
+    progress — confirms terrain/species matchups behave as designed.
+- Locked full 5-species stat identity table (Fox, Frog, Mole,
+  Squirrel, Hedgehog) — see ROADMAP.md, flagged as first-pass numbers
+  pending real playtest rebalancing.
+
+*(No tagged releases yet — v0.1.0 is planned once the full Phase 1
+loop, Weeks 1-3, is playable end-to-end.)*

@@ -52,3 +52,7 @@ crashlytics-build.properties
 # OS
 .DS_Store
 Thumbs.db
+
+# Local batch-mode/test logs (repo root)
+unity_create_log.txt
+unity_test_log.txt
