@@ -62,7 +62,7 @@ structure that visuals can be dropped into.
 
 ## Stack
 
-- **Engine:** Unity 2022 LTS (or newer)
+- **Engine:** Unity 6 (installed: 6000.5.5f1), via Unity Hub
 - **Language:** C# (.NET 6+)
 - **IDE:** VS Code + Unity Editor
 - **3D Modeling:** Blender (free/open-source), Sketchfab for pre-made
