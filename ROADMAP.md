@@ -36,6 +36,40 @@ bonuses (some with tradeoffs), each favors a terrain type
 - Explore biomes: forest, swamp, desert, tundra
 - Seasonal events: "Harvest Dash," "Snowy Sprint," "Bloom Festival"
 
+### Species stat identity (locked 2026-07-29, first pass — see note)
+
+Each species has a base value at level 1 plus a flat per-level growth
+rate, per stat — so specialization holds throughout leveling, not just
+at level 1. `stat = base + level * growthPerLevel`. Values below are a
+first pass to unblock Week 1 coding; **not final** — see the note at
+the end of this section.
+
+| Species   | Sprint        | Jump          | Dig           | Swim          | Balance       | Identity |
+|-----------|---------------|---------------|---------------|---------------|---------------|----------|
+| Fox       | 55 (+2.4/lvl) | 40 (+1.6/lvl) | 25 (+1.0/lvl) | 20 (+0.8/lvl) | 45 (+1.8/lvl) | Ground speedster — great Sprint/Balance, terrible Swim/Dig |
+| Frog      | 25 (+1.0/lvl) | 50 (+2.2/lvl) | 20 (+0.8/lvl) | 55 (+2.4/lvl) | 30 (+1.2/lvl) | Water/air specialist — great Jump/Swim, weak Sprint/Dig |
+| Mole      | 20 (+0.8/lvl) | 15 (+0.6/lvl) | 60 (+2.6/lvl) | 25 (+1.0/lvl) | 35 (+1.4/lvl) | Burrow specialist — dominant Dig, weak everywhere airborne |
+| Squirrel  | 35 (+1.4/lvl) | 45 (+1.8/lvl) | 30 (+1.2/lvl) | 20 (+0.8/lvl) | 55 (+2.4/lvl) | Balance/agility — great Balance/Jump, weak Swim |
+| Hedgehog  | 30 (+1.2/lvl) | 20 (+0.8/lvl) | 40 (+1.6/lvl) | 35 (+1.4/lvl) | 40 (+1.6/lvl) | Generalist/tank — no big weakness or strength, forgiving starter |
+
+Roughly equal total "power budget" per species (~185 base, ~9.4/lvl
+combined growth) except Hedgehog, deliberately flatter as the
+forgiving starter pick alongside Fox. Ties directly into terrain
+(Ground→Sprint, Water→Swim, Tightrope→Balance, Burrow→Dig) so critter
+choice and biome choice are meant to interact — e.g. Mole should
+dominate Burrow shortcuts but struggle everywhere else.
+
+**Only Fox and Frog are in-scope for Week 1** (per BACKLOG.md); Mole,
+Squirrel, Hedgehog numbers are here now so the full roster's identity
+is decided in one pass, but they don't need implementing until their
+species is actually unlocked in a later phase.
+
+**Note — first pass, expect tweaks:** these numbers are a starting
+hypothesis, not a balance guarantee. Per Rule 0/user decision
+2026-07-29, we're deliberately not pre-tweaking further — run actual
+races (Week 1 test harness) and rebalance from real results, not
+theory.
+
 **Design constraint:** cozy, friendly, casual-market tone — deliberate,
 not incidental (see CLAUDE.md Rule 0). Losing a race never removes
 trophies/progress, only slows it.

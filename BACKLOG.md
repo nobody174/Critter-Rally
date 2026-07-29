@@ -14,9 +14,12 @@ process decisions behind these choices.
 
 ## Phase 1, Week 1 — Race Simulation Engine
 
-- [ ] **Design pass:** confirm base stat formulas per critter species
+- [x] **Design pass:** confirm base stat formulas per critter species
       (Fox/Frog to start) and level-scaling curve — Technical Designer
-      hat, write-up before code.
+      hat, write-up before code. Locked 2026-07-29: per-species base +
+      per-level growth rate (linear), full 5-species table in
+      ROADMAP.md. Flagged as first-pass, expect tweaks after real
+      race results.
 - [ ] `Critter` class (species, level, 5 Instincts, equipped gadgets
       list, `CalculateStats()`)
 - [ ] `BiomeTerrain` class (terrain type enum: Ground/Water/Tightrope/
