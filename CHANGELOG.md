@@ -41,6 +41,19 @@ a dated entry below.
 - Locked full 5-species stat identity table (Fox, Frog, Mole,
   Squirrel, Hedgehog) — see ROADMAP.md, flagged as first-pass numbers
   pending real playtest rebalancing.
+- Phase 1 Week 2 (UI & Data Persistence) complete: `PlayerData`,
+  `BiomeProgressEntry` (List-based, JsonUtility-safe), `SaveManager`
+  (load/save + species re-linking after deserialization),
+  `CritterSpeciesLookup` registry, `GameFlow` screen state machine
+  (`GameScreen` enum — renamed from `Screen` after a real
+  `UnityEngine.Screen` naming collision), and a placeholder `Main.unity`
+  scene wiring it all together with Fox/Frog `CritterSpecies` assets.
+- Verified in-editor (not just compiled), 2026-07-29: `SaveLoadTestHarness`
+  confirms fresh-save creation and a full save → new-instance-reload
+  round-trip preserves level, trophies, and biome progress;
+  `GameFlowPlayModeCheck` loads the real scene and confirms
+  `Initialize()` reaches `MainMenu` with linked starter critters, and
+  `SelectCritter()` correctly advances to `BiomeSelect`.
 
 *(No tagged releases yet — v0.1.0 is planned once the full Phase 1
 loop, Weeks 1-3, is playable end-to-end.)*

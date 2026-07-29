@@ -48,21 +48,47 @@ process decisions behind these choices.
 
 ## Phase 1, Week 2 — UI & Data Persistence
 
-- [ ] **Design pass:** finalize `PlayerData` shape — must not contain
+- [x] **Design pass:** finalize `PlayerData` shape — must not contain
       any `Dictionary<TKey,TValue>` field (JsonUtility limitation, see
       CLAUDE.md). `biomeProgression` becomes
       `List<BiomeProgressEntry>` where `BiomeProgressEntry` is a
       `[System.Serializable]` struct/class with `biomeId` and
-      `highestDifficultyCleared`.
-- [ ] `SaveManager` (`LoadOrCreatePlayer`, `SavePlayer`, using
-      `JsonUtility` + `Application.persistentDataPath`)
-- [ ] `GameFlow` screen state machine: MainMenu → CritterSelect →
+      `highestDifficultyCleared`. Implemented in
+      `Assets/Scripts/Save/PlayerData.cs` +
+      `BiomeProgressEntry.cs`. Also caught: `DateTime` doesn't
+      round-trip through `JsonUtility` either — stored as an ISO-8601
+      string (`lastPlayTimeIso`) instead.
+- [x] `SaveManager` (`LoadOrCreatePlayer`, `SavePlayer`, using
+      `JsonUtility` + `Application.persistentDataPath`) —
+      `Assets/Scripts/Save/SaveManager.cs`. Also handles re-linking
+      each loaded `Critter.species` from `CritterSpeciesLookup`, since
+      `[NonSerialized]` ScriptableObject references don't survive a
+      JsonUtility round-trip and `CalculateStats()` would otherwise
+      throw on a freshly-loaded critter.
+- [x] `GameFlow` screen state machine: MainMenu → CritterSelect →
       BiomeSelect → RaceResult (placeholder UI, cubes for critters are
-      fine, no 3D models yet)
-- [ ] Wire starter save: new player gets Fox (Lvl 1) and Frog (Lvl 1)
-- [ ] End-to-end test: select critter → pick biome → race → see
+      fine, no 3D models yet) — `Assets/Scripts/UI/GameFlow.cs`. Screen
+      enum renamed `GameScreen` after a real compile error against
+      `UnityEngine.Screen` (`CS0104` ambiguous reference) — worth
+      remembering for any future enum named `Screen`, `Input`,
+      `Object`, etc. that shadows a UnityEngine type.
+- [x] Wire starter save: new player gets Fox (Lvl 1) and Frog (Lvl 1) —
+      done in `SaveManager.CreateStarterPlayer()`.
+- [x] End-to-end test: select critter → pick biome → race → see
       results → save → quit → reload → critter/progress persisted
-      correctly
+      correctly. Verified 2026-07-29 two ways, both headless and
+      log-confirmed (no PlayMode Test Framework package added yet —
+      kept dependency footprint minimal per the "dead simple" stack
+      goal):
+      - `SaveLoadTestHarness.cs`: fresh save creates linked starters;
+        after simulated level-up/trophies/biome-progress + save +
+        fresh `SaveManager` instance (quit/reload equivalent), all
+        three persisted correctly.
+      - `GameFlowPlayModeCheck.cs`: loads the real `Main.unity` scene,
+        calls `GameFlow.Initialize()` (same code path as `Start()`),
+        confirms it lands on `MainMenu`, loads `PlayerData` with 2
+        linked starters, and `SelectCritter()` correctly advances to
+        `BiomeSelect`.
 
 ## Phase 1, Week 3 — Equipment System & Progression
 

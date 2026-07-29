@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d67c05c3d26f494498d87098ef9fe01, type: 3}
+  m_Name: CritterSpeciesLookup
+  m_EditorClassIdentifier: Assembly-CSharp::CritterRally.Critters.CritterSpeciesLookup
+  allSpecies:
+  - {fileID: 11400000, guid: 81c05300febd2494d9cc49bd6e81da09, type: 2}
+  - {fileID: 11400000, guid: 6eb32fc1683c7c64dbd07deb2ea52fd6, type: 2}
