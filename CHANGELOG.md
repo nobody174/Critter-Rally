@@ -113,6 +113,23 @@ a dated entry below.
   confirmed anyway since the package/settings churn touched
   `ProjectSettings`).
 
+### Fixed — 2026-07-30 (Week 3.5 human playtest)
+- **Bugfix:** `DebugFlowUI.Update()` was rebuilding (destroying and
+  re-instantiating) the CritterSelect buttons every single frame with
+  no change-detection, so a mouse click's press/release never landed
+  on the same GameObject and critter selection silently never fired
+  in Play mode. Now only rebuilds panels/buttons when
+  `GameFlow.CurrentScreen` actually changes.
+- Human-verified in the Unity Editor: MainMenu → pick critter →
+  Race: Forest → RaceResult, fully clickable end-to-end. Confirmed
+  Fox (Sprint-specialist) wins Forest/Ground races and Frog
+  (Water/Jump-specialist) loses them, matching the Week 1
+  species-identity design; loss reward displayed as +40 XP/+0
+  trophies on screen, matching the locked no-negative-loss design.
+  Feel/repetitiveness judgment explicitly deferred to Phase 2, since
+  this debug UI is text-only placeholder and not representative of
+  final presentation.
+
 *(No tagged releases yet. v0.1.0 is intentionally NOT tagged — the
 gadget-select UI and a human playtest pass in the Editor are still
 open per BACKLOG.md, and "playable end-to-end" means a person can

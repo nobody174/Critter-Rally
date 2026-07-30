@@ -38,6 +38,8 @@ namespace CritterRally.UI
         [SerializeField] private Text raceResultText;
         [SerializeField] private Button raceAgainButton;
 
+        private GameScreen lastRefreshedScreen = (GameScreen)(-1); // force a refresh on the first frame
+
         private void Start()
         {
             startRaceButton.onClick.AddListener(() => gameFlow.ShowScreen(GameScreen.CritterSelect));
@@ -49,13 +51,18 @@ namespace CritterRally.UI
 
         private void Update()
         {
-            // Simple polling refresh — fine for a debug-only UI at this scale;
-            // an event-driven refresh isn't worth the complexity here.
-            RefreshForScreen(gameFlow.CurrentScreen);
+            // Only rebuild panels/buttons when the screen actually changes —
+            // rebuilding critter buttons every frame destroyed and
+            // re-instantiated them before a click's Down/Up events could
+            // land on the same object, silently swallowing all clicks.
+            if (gameFlow.CurrentScreen != lastRefreshedScreen)
+                RefreshForScreen(gameFlow.CurrentScreen);
         }
 
         private void RefreshForScreen(GameScreen screen)
         {
+            lastRefreshedScreen = screen;
+
             mainMenuPanel.SetActive(screen == GameScreen.MainMenu);
             critterSelectPanel.SetActive(screen == GameScreen.CritterSelect);
             biomeSelectPanel.SetActive(screen == GameScreen.BiomeSelect);

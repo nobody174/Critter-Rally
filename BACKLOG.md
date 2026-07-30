@@ -173,9 +173,21 @@ both.
       running two Unity batch-mode instances against the same project
       in parallel causes a project-lock conflict and an immediate
       exit-code-1 failure; worth remembering for future headless runs).
-- [ ] **Still needs a human:** open `Main.unity` in the Editor, press
-      Play, click through MainMenu → pick a critter → Race: Forest →
-      confirm the result screen shows sensible win/loss + rewards.
+- [x] **Bugfix:** `DebugFlowUI.Update()` was rebuilding (destroying +
+      re-instantiating) the CritterSelect buttons every single frame,
+      so a click's press/release never landed on the same GameObject
+      and critter selection silently never fired. Now only rebuilds
+      when `GameFlow.CurrentScreen` actually changes.
+      `Assets/Scripts/UI/DebugFlowUI.cs`.
+- [x] Human-verified 2026-07-30 in the Unity Editor (Play Mode):
+      MainMenu → pick critter → Race: Forest → RaceResult all
+      clickable and working. Confirmed Fox (Sprint-specialist) wins
+      Forest/Ground races, Frog (Water/Jump-specialist) loses them —
+      matches the Week 1 species-identity design. Loss reward
+      confirmed as +40 XP/+0 trophies on screen, matching the locked
+      no-negative-loss design exactly. Feel/repetitiveness judgment
+      deferred to Phase 2 — this UI is text-only placeholder, not
+      representative of final presentation.
 
 ---
 
