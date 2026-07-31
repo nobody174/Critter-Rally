@@ -7,6 +7,8 @@ the sole historical record — and is removed from here.
 ## Core concept (from initial pitch, 2026-07-28)
 
 **Theme:** Cute animals with quirky abilities racing through nature.
+**Launch roster (8 species, locked 2026-07-31):** Fox, Frog, Mole,
+Squirrel, Hedgehog, Beaver, Rabbit, Raccoon.
 **Core fantasy:** Train adorable critters, equip goofy gadgets, traverse
 varied terrain.
 **Visual/UX inspiration:** *Pocket Champs* — bright, chunky, readable
@@ -64,18 +66,30 @@ the end of this section.
 | Mole      | 20 (+0.8/lvl) | 15 (+0.6/lvl) | 60 (+2.6/lvl) | 25 (+1.0/lvl) | 35 (+1.4/lvl) | Burrow specialist — dominant Dig, weak everywhere airborne |
 | Squirrel  | 35 (+1.4/lvl) | 45 (+1.8/lvl) | 30 (+1.2/lvl) | 20 (+0.8/lvl) | 55 (+2.4/lvl) | Balance/agility — great Balance/Jump, weak Swim |
 | Hedgehog  | 30 (+1.2/lvl) | 20 (+0.8/lvl) | 40 (+1.6/lvl) | 35 (+1.4/lvl) | 40 (+1.6/lvl) | Generalist/tank — no big weakness or strength, forgiving starter |
+| Beaver    | 25 (+1.0/lvl) | 15 (+0.6/lvl) | 45 (+1.9/lvl) | 40 (+1.7/lvl) | 40 (+1.7/lvl) | Dig/Swim hybrid — secondary Burrow option distinct from Mole's pure extreme, doubles as a decent Water pick, weak Jump |
+| Rabbit    | 45 (+1.9/lvl) | 50 (+2.1/lvl) | 15 (+0.6/lvl) | 20 (+0.8/lvl) | 30 (+1.2/lvl) | Ground/air hopper — second Sprint specialist alongside Fox but leans Jump harder, weak Dig/Swim |
+| Raccoon   | 35 (+1.4/lvl) | 40 (+1.7/lvl) | 20 (+0.8/lvl) | 30 (+1.2/lvl) | 40 (+1.7/lvl) | Nimble generalist — flatter like Hedgehog but skews mobility (Jump/Balance/Sprint) over raw power, no glaring weakness |
 
 Roughly equal total "power budget" per species (~185 base, ~9.4/lvl
-combined growth) except Hedgehog, deliberately flatter as the
-forgiving starter pick alongside Fox. Ties directly into terrain
-(Ground→Sprint, Water→Swim, Tightrope→Balance, Burrow→Dig) so critter
-choice and biome choice are meant to interact — e.g. Mole should
-dominate Burrow shortcuts but struggle everywhere else.
+combined growth) except Hedgehog/Raccoon, deliberately flatter as
+forgiving generalist picks (Hedgehog alongside Fox as starters,
+Raccoon as a second no-weakness option later in the roster). Ties
+directly into terrain (Ground→Sprint, Water→Swim, Tightrope→Balance,
+Burrow→Dig) so critter choice and biome choice are meant to interact
+— e.g. Mole should dominate Burrow shortcuts but struggle everywhere
+else.
 
 **Only Fox and Frog are in-scope for Week 1** (per BACKLOG.md); Mole,
-Squirrel, Hedgehog numbers are here now so the full roster's identity
-is decided in one pass, but they don't need implementing until their
-species is actually unlocked in a later phase.
+Squirrel, Hedgehog, Beaver, Rabbit, Raccoon numbers are here now so
+the full 8-species roster's identity is decided in one pass, but they
+don't need implementing until their species is actually unlocked in a
+later phase.
+
+**Roster size — locked 2026-07-31:** 8 launch species total (Fox,
+Frog, Mole, Squirrel, Hedgehog, Beaver, Rabbit, Raccoon), driven by
+concept art already produced for all 8 in a consistent style
+(`Assets/Art/ConceptArt/<Species>/`). Formalized here so design/stats
+don't lag behind art that already exists.
 
 **Note — first pass, expect tweaks:** these numbers are a starting
 hypothesis, not a balance guarantee. Per Rule 0/user decision

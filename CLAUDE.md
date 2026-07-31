@@ -108,8 +108,9 @@ start:
 
 Cute-animal racing game with training/collection progression, visually
 and tonally inspired by *Pocket Champs* (bright, chunky, friendly
-UI/HUD style). Critters (fox, frog, mole, squirrel, hedgehog, more
-later) have 5 core stats ("Instincts": Sprint, Jump, Dig, Swim,
+UI/HUD style). Critters (8-species launch roster: fox, frog, mole,
+squirrel, hedgehog, beaver, rabbit, raccoon — locked 2026-07-31, see
+ROADMAP.md) have 5 core stats ("Instincts": Sprint, Jump, Dig, Swim,
 Balance) and equip "Gadgets" (Rocket Acorns, Leaf Gliders, Mud Skis,
 Berry Shields, Vine Whips) that grant terrain-specific advantages.
 Progression is critter unlocks + biome unlocks (forest, swamp, desert,
