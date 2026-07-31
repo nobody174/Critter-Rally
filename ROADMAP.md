@@ -211,6 +211,15 @@ they've finished the base game.
 - 3 more critters (Mole, Hedgehog, Bunny)
 
 **Medium priority (nice-to-have, more work)**
+- **Trainer avatar (decided 2026-07-31):** a selectable human/kid
+  "trainer" character, visual only — shown in menu UI (e.g. profile
+  icon, main menu flavor), never in the race/playfield itself, which
+  stays 100% critters. Player picks from a small roster of preset
+  trainer avatars, no customization system implied. Explicitly a
+  late/menu-polish item — belongs with the broader UI/HUD art pass
+  (Phase 2), not before. Not a gameplay mechanic, purely
+  presentation/identity flavor.
+**
 - Procedural biome generation (infinite variations)
 - Cosmetics shop (colored skins, hats, accessories)
 - Challenge modes (speedrun, no-gadget, survival)
