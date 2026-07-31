@@ -175,11 +175,15 @@ change:
 **Phase 2 kickoff plan — decided 2026-07-31:** start with Fox only,
 to prove the full pipeline end-to-end before committing to the rest
 of the roster:
-1. AI-generated concept art for Fox, to lock a consistent visual
-   style before modeling (cozy/chunky, Pocket Champs-inspired).
-2. Blender model + rig for Fox, with run/jump/land/celebrate
-   animations (Mecanim-compatible).
-3. Import into Unity, replace Fox's placeholder cube in `Main.unity`,
+1. ~~AI-generated concept art for Fox~~ — done 2026-07-31, full
+   8-species set exists at `Assets/Art/ConceptArt/<Species>/`.
+2. AI-assisted image-to-3D generation from Fox's locked concept art,
+   producing a starting mesh (not hand-sculpted).
+3. Blender cleanup/retopology on the generated mesh, rig + animate
+   (run/jump/land/celebrate, Mecanim-compatible). This is the
+   from-scratch-Blender-experience learning step, scoped down from
+   full sculpting to cleanup/rigging on an existing mesh.
+4. Import into Unity, replace Fox's placeholder cube in `Main.unity`,
    wire animations to race results.
 4. Playtest checkpoint: does Fox actually running read well before
    investing in Frog/Mole/Squirrel/Hedgehog and UI art? If the
@@ -197,17 +201,22 @@ is caught on one critter, not five.
 - VFX (dust, splashes, speed trails)
 - UI polish matching the Pocket Champs-inspired look: transitions, stat
   icons, equipment previews
-- **Visual design pipeline — locked 2026-07-31:** AI-assisted 2D for
-  UI/HUD art (buttons, icons, backgrounds — generate then refine in
-  Photoshop; tolerates AI-assist well and matches the solo/no-budget
-  constraint) + Blender for 3D critter models, starting with just Fox
-  and Frog to prove the pipeline before the full roster. AI-generated
-  concept art recommended first to lock a consistent style before
-  modeling, since mismatched critter styles would look worse than no
-  art. Sketchfab pre-made models are a fallback only if a specific
-  critter proves too time-consuming to hand-model, not the default
-  path — style consistency across the roster matters more than speed
-  on any one critter.
+- **Visual design pipeline — locked 2026-07-31, revised 2026-07-31
+  after a real skill-gap check:** AI-assisted 2D for UI/HUD art
+  (buttons, icons, backgrounds — generate then refine in Photoshop).
+  For 3D critter models: **AI-assisted 3D generation (image-to-mesh
+  from the locked concept art) as the primary path**, not from-scratch
+  Blender sculpting — the user has zero prior Blender experience, and
+  sculpting a rigged/animated character from a blank scene is too
+  steep a first project. Blender is still used, but for the more
+  mechanical/tutorial-followable steps: importing the generated mesh,
+  cleanup/retopology, rigging, and animating (run/jump/land/celebrate,
+  Mecanim-compatible) — not organic sculpting from nothing.
+  **Sketchfab pre-made bases (reshape/recolor/re-rig) stays the
+  documented fallback** if a given critter's AI-generated mesh proves
+  unusable and needs a different starting point. Starting with just
+  Fox to prove this revised pipeline before the full 8-species roster
+  (see kickoff plan below).
 
 ## Maybe Later — Phase 2+ backlog (post v1.0)
 
