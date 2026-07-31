@@ -130,6 +130,32 @@ a dated entry below.
   this debug UI is text-only placeholder and not representative of
   final presentation.
 
+### Added — 2026-07-31 (Equipment-select UI)
+- `GameScreen.EquipmentSelect`, inserted between CritterSelect and
+  BiomeSelect: lists all 5 gadgets from `EquipmentLibrary`, click to
+  equip/unequip (enforces the existing 2-gadget max via
+  `Critter.EquipGadget()`/`UnequipGadget()`), live stats readout
+  updates on toggle, Continue advances to BiomeSelect. Same bare debug
+  UI pattern as the rest of Week 3.5 (no art/layout polish).
+  `Assets/Scripts/UI/DebugFlowUI.cs` +
+  `Assets/Scripts/Editor/DebugUISceneSetup.cs`.
+- Made `DebugUISceneSetup.SetupDebugUI()` safe to re-run: it now
+  removes any previous Canvas/DebugFlowUI from the scene first,
+  instead of stacking duplicates on every run.
+- **Bugs caught and fixed during this pass:**
+  - CS0118: `CritterRally.Equipment` is both a namespace and a class
+    name, so plain `Equipment` inside `DebugFlowUI.cs` (which imports
+    the namespace) was ambiguous — qualified as `Equipment.Equipment`
+    to match the existing pattern in `Critter.cs`.
+  - `UnityException`: a `static readonly Equipment[]` field
+    initializer called `EquipmentLibrary`'s factory methods (which use
+    `ScriptableObject.CreateInstance`) during type
+    construction/serialization, which Unity disallows outside
+    `Awake`/`Start`. Moved to an instance field built in `Start()`.
+- Human-verified in Play Mode: full loop now runs MainMenu →
+  CritterSelect → EquipmentSelect (equip/unequip working, stats update
+  live) → BiomeSelect → Race: Forest → RaceResult.
+
 *(No tagged releases yet. v0.1.0 is intentionally NOT tagged — the
 gadget-select UI and a human playtest pass in the Editor are still
 open per BACKLOG.md, and "playable end-to-end" means a person can

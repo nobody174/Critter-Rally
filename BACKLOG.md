@@ -104,12 +104,25 @@ process decisions behind these choices.
       pending design pass above) —
       `Assets/Scripts/Equipment/Equipment.cs` +
       `EquipmentLibrary.cs` (factory for all 5).
-- [ ] **Equipment-select UI: choose up to 2 gadgets before a race —
-      still open.** `Critter.EquipGadget()`/`UnequipGadget()` enforce
-      the 2-gadget max and recalculate stats correctly (verified), but
-      no Canvas screen exists yet for a player to actually pick
-      gadgets — that's a UI/UX Programmer hat task, deferred since it
-      needs real screen-layout decisions, not just logic.
+- [x] Equipment-select UI: `GameScreen.EquipmentSelect` inserted
+      between CritterSelect and BiomeSelect. Bare-bones debug UI (same
+      no-art pattern as the rest of Week 3.5): lists all 5 gadgets
+      from `EquipmentLibrary`, click to equip/unequip (enforces the
+      2-max via existing `Critter.EquipGadget()`/`UnequipGadget()`),
+      live stats readout updates on toggle, Continue advances to
+      BiomeSelect. `Assets/Scripts/UI/DebugFlowUI.cs` +
+      `Assets/Scripts/Editor/DebugUISceneSetup.cs`. Made the setup
+      tool safe to re-run (removes any previous Canvas/DebugFlowUI
+      first) since it isn't idempotent by default. Human-verified
+      2026-07-31 in Play Mode: gadget list displays, click
+      equips/unequips with live "[EQUIPPED]" tag and stat readout
+      update, Continue advances to BiomeSelect.
+      Real bugs caught and fixed along the way: `Equipment` namespace
+      vs. class name collision (CS0118, needed `Equipment.Equipment`
+      qualification) and a `static readonly` field trying to call
+      `ScriptableObject.CreateInstance` outside `Awake`/`Start`
+      (UnityException) — gadget list is now built as an instance field
+      in `Start()` instead.
 - [x] XP/level-up wiring: race result → `Critter.Experience` →
       level-up check → stat recalculation — `Critter.AddExperience()`
       (handles multi-level jumps in one call) +

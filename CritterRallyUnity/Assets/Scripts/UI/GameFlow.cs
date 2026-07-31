@@ -9,6 +9,7 @@ namespace CritterRally.UI
     {
         MainMenu,
         CritterSelect,
+        EquipmentSelect,
         BiomeSelect,
         RaceResult
     }
@@ -65,7 +66,7 @@ namespace CritterRally.UI
         {
             SelectedCritter = critter;
             Debug.Log($"[GameFlow] Selected critter: {critter.speciesId} (Lvl {critter.level})");
-            ShowScreen(GameScreen.BiomeSelect);
+            ShowScreen(GameScreen.EquipmentSelect);
         }
 
         /// <summary>

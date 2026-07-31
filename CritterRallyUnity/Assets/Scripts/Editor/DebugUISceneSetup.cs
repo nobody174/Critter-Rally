@@ -31,6 +31,16 @@ namespace CritterRally.EditorTools
             }
             var gameFlow = gameFlowObject.GetComponent<GameFlow>();
 
+            // Re-running this tool is expected as the debug UI evolves —
+            // remove any previous Canvas/DebugFlowUI so re-runs don't stack
+            // duplicate UIs on top of each other.
+            var existingDebugUI = Object.FindFirstObjectByType<DebugFlowUI>();
+            if (existingDebugUI != null)
+                Object.DestroyImmediate(existingDebugUI.gameObject);
+            var existingCanvas = GameObject.Find("Canvas");
+            if (existingCanvas != null)
+                Object.DestroyImmediate(existingCanvas);
+
             if (Object.FindFirstObjectByType<EventSystem>() == null)
             {
                 var eventSystemObject = new GameObject("EventSystem");
@@ -47,6 +57,7 @@ namespace CritterRally.EditorTools
 
             var mainMenuPanel = BuildMainMenuPanel(canvasObject.transform, out var startRaceButton);
             var critterSelectPanel = BuildCritterSelectPanel(canvasObject.transform, out var critterButtonContainer, out var critterButtonPrefab);
+            var equipmentSelectPanel = BuildEquipmentSelectPanel(canvasObject.transform, out var equipmentStatsText, out var gadgetButtonContainer, out var gadgetButtonPrefab, out var equipmentContinueButton);
             var biomeSelectPanel = BuildBiomeSelectPanel(canvasObject.transform, out var biomeInfoText, out var raceForestButton);
             var raceResultPanel = BuildRaceResultPanel(canvasObject.transform, out var raceResultText, out var raceAgainButton);
 
@@ -61,6 +72,11 @@ namespace CritterRally.EditorTools
             serializedUI.FindProperty("startRaceButton").objectReferenceValue = startRaceButton;
             serializedUI.FindProperty("critterButtonContainer").objectReferenceValue = critterButtonContainer;
             serializedUI.FindProperty("critterButtonPrefab").objectReferenceValue = critterButtonPrefab;
+            serializedUI.FindProperty("equipmentSelectPanel").objectReferenceValue = equipmentSelectPanel;
+            serializedUI.FindProperty("equipmentSelectStatsText").objectReferenceValue = equipmentStatsText;
+            serializedUI.FindProperty("gadgetButtonContainer").objectReferenceValue = gadgetButtonContainer;
+            serializedUI.FindProperty("gadgetButtonPrefab").objectReferenceValue = gadgetButtonPrefab;
+            serializedUI.FindProperty("equipmentContinueButton").objectReferenceValue = equipmentContinueButton;
             serializedUI.FindProperty("biomeSelectInfoText").objectReferenceValue = biomeInfoText;
             serializedUI.FindProperty("raceForestButton").objectReferenceValue = raceForestButton;
             serializedUI.FindProperty("raceResultText").objectReferenceValue = raceResultText;
@@ -100,6 +116,32 @@ namespace CritterRally.EditorTools
             var prefabButton = CreateButton("CritterButtonTemplate", panel.transform, "Critter", Vector2.zero, new Vector2(600, 150));
             prefabButton.gameObject.SetActive(false);
             buttonPrefab = prefabButton;
+
+            return panel;
+        }
+
+        private static GameObject BuildEquipmentSelectPanel(Transform parent, out Text statsText, out Transform gadgetButtonContainer, out Button gadgetButtonPrefab, out Button continueButton)
+        {
+            var panel = CreatePanel("EquipmentSelectPanel", parent);
+            CreateLabel("HeaderText", panel.transform, "Choose Gadgets (max 2)", 48, new Vector2(0, 800), new Vector2(800, 80));
+            statsText = CreateLabel("StatsText", panel.transform, "", 32, new Vector2(0, 680), new Vector2(900, 100));
+
+            var containerObject = new GameObject("GadgetButtonContainer", typeof(RectTransform), typeof(VerticalLayoutGroup));
+            containerObject.transform.SetParent(panel.transform, false);
+            var containerRect = containerObject.GetComponent<RectTransform>();
+            containerRect.sizeDelta = new Vector2(700, 900);
+            containerRect.anchoredPosition = new Vector2(0, 150);
+            var layout = containerObject.GetComponent<VerticalLayoutGroup>();
+            layout.spacing = 15;
+            layout.childControlHeight = false;
+            layout.childForceExpandHeight = false;
+            gadgetButtonContainer = containerObject.transform;
+
+            var prefabButton = CreateButton("GadgetButtonTemplate", panel.transform, "Gadget", Vector2.zero, new Vector2(700, 120));
+            prefabButton.gameObject.SetActive(false);
+            gadgetButtonPrefab = prefabButton;
+
+            continueButton = CreateButton("EquipmentContinueButton", panel.transform, "Continue", new Vector2(0, -750), new Vector2(400, 100));
 
             return panel;
         }
