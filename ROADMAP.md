@@ -157,6 +157,24 @@ Summary of what each week delivers:
 Once Phase 1 ships, the game is mechanically complete but has no real
 art. Phase 2 is purely visual — the simulation underneath does not
 change:
+
+**Phase 2 kickoff plan — decided 2026-07-31:** start with Fox only,
+to prove the full pipeline end-to-end before committing to the rest
+of the roster:
+1. AI-generated concept art for Fox, to lock a consistent visual
+   style before modeling (cozy/chunky, Pocket Champs-inspired).
+2. Blender model + rig for Fox, with run/jump/land/celebrate
+   animations (Mecanim-compatible).
+3. Import into Unity, replace Fox's placeholder cube in `Main.unity`,
+   wire animations to race results.
+4. Playtest checkpoint: does Fox actually running read well before
+   investing in Frog/Mole/Squirrel/Hedgehog and UI art? If the
+   pipeline (AI concept art -> Blender -> Mecanim) proves too slow or
+   the results too inconsistent, revisit before scaling to the full
+   roster.
+Only after Fox is proven does UI/HUD art and the rest of the critter
+roster follow — deliberately sequenced this way so a pipeline problem
+is caught on one critter, not five.
 - 3D critter models (Blender and/or Sketchfab) replacing placeholder
   cubes
 - Animations (run/jump/land/celebrate) synced to race results via
@@ -165,8 +183,17 @@ change:
 - VFX (dust, splashes, speed trails)
 - UI polish matching the Pocket Champs-inspired look: transitions, stat
   icons, equipment previews
-- Visual design pipeline (Figma/Photoshop vs. AI-assisted vs. other) —
-  not yet decided, needs its own discussion before Phase 2 starts
+- **Visual design pipeline — locked 2026-07-31:** AI-assisted 2D for
+  UI/HUD art (buttons, icons, backgrounds — generate then refine in
+  Photoshop; tolerates AI-assist well and matches the solo/no-budget
+  constraint) + Blender for 3D critter models, starting with just Fox
+  and Frog to prove the pipeline before the full roster. AI-generated
+  concept art recommended first to lock a consistent style before
+  modeling, since mismatched critter styles would look worse than no
+  art. Sketchfab pre-made models are a fallback only if a specific
+  critter proves too time-consuming to hand-model, not the default
+  path — style consistency across the roster matters more than speed
+  on any one critter.
 
 ## Maybe Later — Phase 2+ backlog (post v1.0)
 
